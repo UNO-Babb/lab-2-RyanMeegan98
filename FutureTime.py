@@ -1,29 +1,36 @@
 #FutureTime.py
-#Name:
-#Date:
-#Assignment:
+#Name: Ryan Meegan
+#Date: Feb 2 2025
+#Assignment: Future Time
 
 # datetime will allow us to access the system date and time.
 import datetime
+import pytz
+central_tz = pytz.timezone("America/Chicago")
 
 def main():
   #getting current time from system, storing to variable
-  now = datetime.datetime.now()
-  currentHour = now.hour
+  now = datetime.datetime.now(central_tz)
+  currentHour = now.hour 
   currentMinute = now.minute
 
-  print (currentHour, currentMinute) #this is just for checking, we should delete it later
+  print("Current time:", f"{currentHour:02}:{currentMinute:02}")
 
   #TODO:
   #Ask user for hours
+  hoursToAdd = int(input("Enter hours to add: "))
+
   #Ask user for minutes
+  minutesToAdd = int(input("Enter minutes to add: "))
 
-  #Calculate the time after the user-supplied time has passed.
+  totalMinutes = currentMinute + minutesToAdd
+  futureMinutes = totalMinutes % 60
+  extraHours = totalMinutes // 60
 
-  #Do not use any if statements in calculating the time.
+  totalHours = currentHour + hoursToAdd + extraHours
+  futureHour = totalHours % 24
 
-  #Output the future time in standard format "HH:MM"
-
+  print(f"Future time: {futureHour:02}:{futureMinutes:02}")
 
 if __name__ == '__main__':
   main()
